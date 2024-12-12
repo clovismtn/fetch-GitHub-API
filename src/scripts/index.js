@@ -1,9 +1,8 @@
 import { getUser } from './services/users.js'
-
 import { repos } from "./services/repositories.js"
-
 import {user} from './objects/user.js'
 import {screen} from './objects/screen.js'
+import { getFollowers } from './services/followers.js'
 
 function validateEmptyInput(userName){
     if(userName.length === 0){
@@ -38,12 +37,15 @@ async function getUserData(userName) {
     }
 
     const repositoriesResponse = await repos(userName)
+    const followersResponse = await getFollowers(userName)
+    // const followingResponse = await getFollowing(userName)
+    
 
 
     user.setInfo(userResponse)
     user.setRepositories(repositoriesResponse)
-
+    user.setFollowers(followersResponse)
+    // user.setFollowing(followingResponse)
     screen.renderUser(user)
-   
     console.log()
 }

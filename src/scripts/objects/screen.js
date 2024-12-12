@@ -5,7 +5,11 @@ const screen = {
                                          <img src="${user.avatarUrl}" alt ='foto de perfil'/>
                                         <h1>${user.name ?? 'não possui nome'}</h1>
                                         <p>${user.bio ?? 'nao possui bio'}
-                                        </div>`
+                                        </div>
+                                        <div class="followersection">
+                                        <h2>followers</h2>
+                                        </div>
+                                        <div class="followingSection"`
         
         let repositoriesItens = ''
         user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}"target="_blank">${repo.name}</a></li>` );
@@ -16,6 +20,8 @@ const screen = {
             <ul>${repositoriesItens}</ul>
             </div>`
         }
+
+
     },
     renderNotFound(){
         this.userProfile.innerHTML = '<h3>Usuario não encontrado</h3>'
