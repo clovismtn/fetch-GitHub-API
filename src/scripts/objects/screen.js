@@ -8,8 +8,12 @@ const screen = {
                                         </div>
                                         <div class="followersection">
                                         <h2>followers</h2>
+                                        <h2>${user.followers}</h2>
                                         </div>
-                                        <div class="followingSection"`
+                                        <div class="followingSection"
+                                        <h2>following</h2>
+                                        <h2>${user.following}</h2>
+                                        </div>`
         
         let repositoriesItens = ''
         user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}"target="_blank">${repo.name}</a></li>` );
@@ -18,6 +22,16 @@ const screen = {
             this.userProfile.innerHTML +=       `<div class="repositories section">
             <h2>Repositoires</h2>
             <ul>${repositoriesItens}</ul>
+            </div>`
+        }
+
+        let eventsItens = ''
+        user.events.forEach(getEvents => eventsItens += `<li><a href="${getEvents.html_url}"target="_blank">${getEvents.name}</a></li>` );
+
+        if(user.events.length > 0){
+            this.userProfile.innerHTML +=       `<div class="events section">
+            <h2>events</h2>
+            <ul>${eventsItens}</ul>
             </div>`
         }
 

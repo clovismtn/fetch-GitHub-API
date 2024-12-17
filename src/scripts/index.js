@@ -3,6 +3,8 @@ import { repos } from "./services/repositories.js"
 import {user} from './objects/user.js'
 import {screen} from './objects/screen.js'
 import { getFollowers } from './services/followers.js'
+import { getFollowing } from './services/following.js'
+import { getEvents } from './services/events.js'
 
 function validateEmptyInput(userName){
     if(userName.length === 0){
@@ -38,14 +40,20 @@ async function getUserData(userName) {
 
     const repositoriesResponse = await repos(userName)
     const followersResponse = await getFollowers(userName)
-    // const followingResponse = await getFollowing(userName)
+    const numberOfFollowers = followersResponse.length
+    const followingResponse = await getFollowing(userName)
+    const numberOfFollows = followingResponse.length
+    const eventsResponse = await getEvents(userName)
     
 
 
     user.setInfo(userResponse)
     user.setRepositories(repositoriesResponse)
-    user.setFollowers(followersResponse)
-    // user.setFollowing(followingResponse)
+    user.setFollowers(numberOfFollowers)
+    user.setFollowing(numberOfFollows)
+    user.setEvents(eventsResponse)
     screen.renderUser(user)
-    console.log()
+    console.log(eventsResponse)
 }
+
+console.log(user)
