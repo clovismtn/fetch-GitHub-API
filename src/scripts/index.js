@@ -40,9 +40,9 @@ async function getUserData(userName) {
 
     const repositoriesResponse = await repos(userName)
     const followersResponse = await getFollowers(userName)
-    const numberOfFollowers = followersResponse.length
+    const numberOfFollowers = followersResponse.followers
     const followingResponse = await getFollowing(userName)
-    const numberOfFollows = followingResponse.length
+    const numberOfFollows = followingResponse.following
     const eventsResponse = await getEvents(userName)
     
 
